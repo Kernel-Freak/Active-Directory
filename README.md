@@ -128,5 +128,6 @@ Contributions are welcome! If you have suggestions or improvements:
 - **Author**: Samrat Mandal
 - **Email**: samratmandal423@gmail.com
 - **GitHub**: https://github.com/Kernel-Freak
+- **Linkedin**: https://www.linkedin.com/in/samrat7/
 
 For additional questions or further discussion, please feel free to contact the author.
