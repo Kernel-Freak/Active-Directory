@@ -1,132 +1,186 @@
-# Active-Directory
+# 🛠️ Active Directory Lab for System Administration
 
-## Project Description
+## 📝 Project Description
 
-This project provides a comprehensive lab environment for setting up and configuring Active Directory on a Windows Server virtual machine using Oracle VirtualBox. It is an educational resource designed for IT professionals, students, and system administrators to practice and test Windows domain management in a controlled, non-production environment. The setup includes installing Windows Server, promoting it to a Domain Controller, configuring DNS, creating user accounts and organizational units (OUs), and adding a second Windows machine as a domain-joined client for testing.
+This project offers a complete lab environment for setting up and managing Active Directory using Windows Server on a virtual machine through Oracle VirtualBox. It serves as an educational resource for IT professionals, system administrators, and students to gain hands-on experience with Windows domain infrastructure and enterprise-grade system administration. The lab guides you through installing Windows Server, configuring it as a Domain Controller with DNS and DHCP, managing users and organizational units (OUs), and integrating a Windows 10 client to simulate a real-world domain environment.
 
-## Features
+## 🚀 Features
 
-- **Full Windows Server Installation**: Step-by-step guide for installing Windows Server 2019 (or later).
-- **Domain Controller Promotion**: Procedures to promote the server to a Domain Controller.
-- **DNS Configuration**: Detailed instructions for setting up and managing DNS.
-- **Active Directory Management**: Creation of organizational units (OUs) and user accounts.
-- **Domain-Joined Client Setup**: Instructions for joining a second Windows machine to the domain.
-- **Optional Configurations**:
-  - Static IP address configuration.
-  - Taking snapshots for quick recovery.
-  - Testing with domain-joined client machines.
+* 🖥️ **Full Windows Server Installation**: Step-by-step guide for installing Windows Server 2019 or later.
+* 🛡️ **Domain Controller Setup**: Promote the server to a Domain Controller with Active Directory Domain Services (AD DS).
+* 🌐 **DNS and DHCP Configuration**: Configure domain name resolution and IP address assignment.
+* 👥 **Active Directory Management**: Create and manage organizational units (OUs), users, groups, and computer objects.
+* 📜 **Group Policy Implementation**: Apply Group Policy Objects (GPOs) to manage security, user environments, and system configurations.
+* 💻 **Domain-Joined Client Integration**: Join a Windows 10 machine to the domain for simulation of multi-user environments.
+* 🧰 **System Administration Practices**:
 
-## Prerequisites
+  * OU design reflecting organizational structure.
+  * Delegation of administrative control.
+  * GPO management for centralized policy enforcement.
+  * Monitoring and managing Active Directory using built-in administrative tools.
+  * DNS and DHCP configuration for network services.
+  * Routine maintenance and performance monitoring.
+  * Backup, restore, and user access auditing.
+* ⚙️ **Optional Configurations**:
 
-Before you begin, ensure you have the following:
+  * Static IP configuration for consistent network communication.
+  * Virtual machine snapshots for rollback and recovery.
 
-- **Oracle VirtualBox**: Installed on your host machine.
-- **Windows Server ISO**: Windows Server 2019 (or later) installation media.
-- **Second Windows Machine ISO**: For setting up a domain-joined client (optional).
-- **Sufficient System Resources**: Adequate RAM, CPU, and disk space for running multiple virtual machines.
-- **Basic Knowledge**: Familiarity with Windows Server administration and network configuration.
-- **Administrative Rights**: Permissions to install VirtualBox and configure virtual network settings on your host machine.
+## 📦 Prerequisites
 
-## Installation and Setup Instructions
+Ensure you have the following before setting up:
 
-Follow these detailed steps to set up the lab environment:
+* 💽 **Oracle VirtualBox**: Installed on your host machine.
+* 📀 **Windows Server ISO**: Installation media for Windows Server 2019 or later.
+* 💿 **Windows 10 ISO**: For setting up a domain-joined client machine.
+* 🧠 **Sufficient System Resources**: Minimum 8 GB RAM and adequate CPU/disk resources.
+* 📘 **Basic Networking and Windows Administration Skills**
+* 🔐 **Administrative Rights**: To install and configure VirtualBox and virtual networks.
 
-### 1. Download and Install Oracle VirtualBox
+## ⚙️ Installation and Setup Instructions
 
-- Visit the [Oracle VirtualBox website](https://www.virtualbox.org) and download the latest version.
-- Install VirtualBox following the on-screen instructions for your host operating system.
+### 1️⃣ Download and Install Oracle VirtualBox
 
-### 2. Create the Windows Server Virtual Machine
+* Download the latest version from the [Oracle VirtualBox website](https://www.virtualbox.org).
+* Install VirtualBox on your host OS following the setup instructions.
 
-- **New VM Setup**:
-  - Open VirtualBox and click on **New**.
-  - Name the VM (e.g., `WinServer-AD`), set the Type to "Microsoft Windows", and choose the appropriate Version (Windows Server 2019 or later).
-  - Allocate at least 4 GB of RAM (more for improved performance).
-  - Create a virtual hard disk (minimum 40 GB recommended).
+### 2️⃣ Create the Windows Server Virtual Machine
 
-- **Virtual Machine Configuration**:
-  - Open the **Settings** for the VM.
-  - Under **System > Motherboard**, set the boot order to prioritize the optical drive for ISO booting.
-  - Configure network settings in **Network**: Choose "Bridged" or "NAT" based on your testing requirements. Set up a static IP if needed for better management.
+* **Create New VM**:
 
-### 3. Install Windows Server
+  * Name: `WinServer-AD`
+  * Type: Microsoft Windows; Version: Windows Server 2019 or later
+  * RAM: Minimum 4 GB (8 GB recommended)
+  * Hard Disk: Minimum 40 GB
+* **VM Settings**:
 
-- Attach the Windows Server installation ISO in the **Storage** section.
-- Start the VM and follow the installation prompts:
-  - Select language, time, and keyboard preferences.
-  - Proceed with the installation and complete the initial configuration.
-  - If configuring a static IP, do this during installation or later via network settings.
+  * Set boot order to boot from ISO
+  * Configure networking (Bridged or NAT)
+  * Assign a static IP address (recommended)
 
-### 4. Promote the Windows Server to a Domain Controller
+### 3️⃣ Install Windows Server
 
-- **Configure Active Directory**:
-  - Once Windows Server is installed, open **Server Manager**.
-  - Click on **Add roles and features**.
-  - Select **Active Directory Domain Services** and follow the wizard to install the necessary roles and features.
+* Attach the ISO file in the VM's storage settings.
+* Boot and install Windows Server with standard configurations.
+* Configure networking if needed.
 
-- **Domain Controller Promotion**:
-  - When installation completes, click the notification flag in Server Manager and choose **Promote this server to a domain controller**.
-  - Select **Add a new forest** and enter a root domain name (e.g., `example.local`).
-  - Configure the DNS options, choose your domain functional levels, and set a Directory Services Restore Mode (DSRM) password.
-  - Complete the promotion wizard and allow the machine to restart.
+### 4️⃣ Promote Server to Domain Controller
 
-### 5. Configure DNS, Create OUs, and User Accounts
+* Launch **Server Manager**
+* Install **Active Directory Domain Services (AD DS)**
+* After installation, choose **Promote this server to a domain controller**
 
-- After reboot, launch **Server Manager** again.
-- Open **Active Directory Users and Computers**:
-  - Create organizational units (OUs) to structure your directory.
-  - Set up user accounts, security groups, and apply relevant policies.
+  * Add a new forest (e.g., `example.local` or `Kernel-Freak.local`)
+  * Configure DNS, set DSRM password, and complete the promotion
+  * Restart after promotion
 
-### 6. Set Up the Domain-Joined Client Machine
+### 5️⃣ Configure DNS and DHCP Services
 
-- **Create a New VM for the Client**:
-  - Follow similar steps as for the Windows Server VM to create a client machine.
-  - Use a Windows client operating system (Windows 10 or later recommended).
+* **🧭 DNS Configuration**:
 
-- **Join the Client to the Domain**:
-  - Boot the client VM and configure its network settings, ensuring it can reach the domain controller.
-  - In the client system settings, navigate to **System > About > Rename this PC (advanced)** and select **Change settings**.
-  - Choose **Domain**, enter the domain name (e.g., `example.local`), in my case i have used `Kernel-Freak.local` and provide administrator credentials when prompted.
-  - Restart the client machine to complete the domain join process.
+  * Open **DNS Manager** from Server Manager > Tools.
+  * Ensure Forward Lookup Zones and Reverse Lookup Zones are properly configured for your domain.
+  * Verify DNS records (A, PTR, SRV) are auto-created and resolvable.
+  * Add static records as needed for critical services or client machines.
 
-## Screenshots
+* **📡 DHCP Configuration**:
 
-Below are placeholder screenshots. Replace these with your own screenshots from the setup process:
+  * Open **DHCP Manager** from Server Manager > Tools.
+  * Add DHCP role if not already installed.
+  * Create a new IPv4 scope with a valid IP address range, subnet mask, and lease duration.
+  * Set scope options: router (default gateway), DNS servers (point to domain controller), and domain name.
+  * Authorize the DHCP server and activate the scope.
 
-- Oracle VirtualBox VM Configuration
-- Windows Server Installation
-- Active Directory Promotion Wizard
-- Domain-Joined Client Configuration
+### 6️⃣ Configure Active Directory and System Administration Elements
 
-## Usage
+* Open **Active Directory Users and Computers**
+* Create Organizational Units (OUs) to reflect departments (e.g., HR, IT, Finance)
+* Create user accounts and assign to OUs
+* Create and link GPOs:
 
-This lab environment is intended for educational and testing purposes. Use it to:
+  * Set password policies
+  * Restrict access to Control Panel
+  * Deploy software or scripts
+  * Configure login banners, screensavers, and mapped drives
+* Use **Group Policy Management Console (GPMC)** for advanced policy settings and linking
 
-- Learn and experiment with Active Directory setup and management.
-- Practice configuring DNS and domain policies.
-- Test domain-joined client scenarios and network configurations.
-- Simulate common enterprise network scenarios for troubleshooting and educational exercises.
+### 7️⃣ Set Up and Join a Windows 10 Client
 
-## Known Issues
+* Create another VM with Windows 10 installed
+* Configure networking so it can communicate with the Domain Controller
+* Join the client machine to the domain:
 
-- **Resource Limitations**: Ensure your host machine has enough resources if running multiple VMs simultaneously.
-- **Network Configuration Challenges**: Depending on your network setup, additional VirtualBox network adjustments might be needed, especially with NAT or bridged modes.
-- **Driver Compatibility**: Windows Server and client VMs might require additional drivers for optimal performance in VirtualBox. Consult VirtualBox documentation if issues arise.
+  * Go to **System > About > Rename this PC > Change settings**
+  * Select Domain and enter domain name (e.g., `Kernel-Freak.local`)
+  * Provide administrator credentials when prompted
+  * Restart to complete domain join
 
-## Contributing
+### 8️⃣ Monitoring, Maintenance, and Administrative Procedures
 
-Contributions are welcome! If you have suggestions or improvements:
+* **📊 System Logs and Performance Metrics**:
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Submit a pull request with a detailed explanation of your changes.
-4. For major changes, consider opening an issue first for discussion.
+  * Use **Event Viewer** to monitor logs for DNS, DHCP, and Directory Services.
+  * Track logon attempts, policy application events, and system errors.
+  * Use **Task Manager**, **Performance Monitor**, and **Resource Monitor** for resource tracking.
 
+* **🛠️ Routine Maintenance**:
 
-## Contact / Author Info
+  * Review event logs regularly.
+  * Verify replication health using `repadmin /replsummary`.
+  * Clear stale DNS records and ensure DHCP leases are efficiently managed.
 
-- **Samrat Mandal**  
-- 📧 samratmandal423@gmail.com  
-- 🌐 [GitHub](https://github.com/Kernel-Freak) | [LinkedIn](https://www.linkedin.com/in/samrat7/)
+* **💾 Backup and Restore**:
 
-For additional questions or further discussion, please feel free to contact the author.
+  * Use **Windows Server Backup** to schedule regular system state and full backups.
+  * Back up the system state, including AD DS, DNS, and DHCP configurations.
+  * Test restoration using **Directory Services Restore Mode (DSRM)**.
+
+* **🔍 User Access Auditing**:
+
+  * Enable **Advanced Auditing Policies** via GPO.
+  * Track file access, logon events, and privilege use under **Security Logs**.
+  * Export and archive logs for long-term auditing.
+
+## 🖼️ Screenshots
+
+\*You will get all the screenshots from the above folder. \*
+
+* VirtualBox VM Configuration
+* Windows Server Installation
+* Active Directory Domain Controller Promotion
+* OU and GPO Setup
+* Windows 10 Domain Join Confirmation
+* DNS and DHCP Console Views
+* Event Viewer and Backup Configurations
+
+## 💡 Usage
+
+This lab environment is ideal for:
+
+* Practicing enterprise-level system administration tasks
+* Learning Active Directory, DNS, DHCP, and GPO management
+* Simulating real-world IT infrastructure for educational purposes
+* Testing configuration changes and policies in a safe environment
+
+## ⚠️ Known Issues
+
+* **Performance Constraints**: Ensure adequate RAM and CPU to run multiple VMs
+* **Network Configuration**: May require VirtualBox networking adjustments (Bridged/NAT)
+* **Driver Compatibility**: Some drivers may need manual installation for optimal performance
+
+## 🤝 Contributing
+
+Contributions are welcome:
+
+1. Fork this repository
+2. Create a feature or fix branch
+3. Submit a pull request with a detailed description
+4. Open issues for feature discussions or questions
+
+## 📇 Contact / Author Info
+
+* **Samrat Mandal**
+* 📧 [samratmandal423@gmail.com](mailto:samratmandal423@gmail.com)
+* 🌐 [GitHub](https://github.com/Kernel-Freak) | [LinkedIn](https://www.linkedin.com/in/samrat7/)
+
+For queries  feel free to get in touch!
